@@ -441,7 +441,6 @@
         let latchStatus = Array(97).fill('Unknown'); 
         let scannedOpenLatches = []; 
 
-        // Built-in Default Commands directly mapped from Excel Template across 96 Compartments
         const defaultConfig = {
             duration: 60,
             baudRate: 115200,
@@ -485,10 +484,10 @@
                 openFb: `t0113736F${globalHexUpper}`,
                 closeFb: `t01137363${globalHexUpper}`,
                 testCmd: `t${ubieBoardStr}A2500${ubiePosNum}`,
-                passFb1: `t${ubieBoardStr}A869700${ubiePosNum}01`,
-                passFb2: `t${ubieBoardStr}A869700${ubiePosNum}02`,
-                passFb3: `t${ubieBoardStr}A869700${ubiePosNum}03`,
-                passFb4: `t${ubieBoardStr}A869700${ubiePosNum}04`,
+                passFb1: `t${ubieBoardStr}A46963${ubiePosNum}01`,
+                passFb2: `t${ubieBoardStr}A46963${ubiePosNum}02`,
+                passFb3: `t${ubieBoardStr}A46963${ubiePosNum}03`,
+                passFb4: `t${ubieBoardStr}A46963${ubiePosNum}04`,
                 disableCmd: `t011243${globalHexUpper}`,
                 disableOpenFb: `t01137363${globalHexUpper}`,
                 disableCloseFb: `t0113736F${globalHexUpper}`
@@ -1093,6 +1092,7 @@
                     }
                     
                     // 2. SEND UBIE TEST COMMAND & WAIT FOR FEEDBACK THAT MATCHES UBIE TEST
+                 //   await sendCommand(ubieCfg.testCmd);
                     let passFbs = [ubieCfg.passFb1, ubieCfg.passFb2, ubieCfg.passFb3, ubieCfg.passFb4].filter(f => f).map(f => f.toLowerCase());
                     let res = await waitForFeedback(passFbs, 30000);
                     
@@ -1445,13 +1445,7 @@
             if (saved) {
                 try {
                     const parsed = JSON.parse(saved);
-                    config = {
-                        ...defaultConfig,
-                        ...parsed,
-                        usb: { latches: { ...defaultConfig.usb.latches, ...(parsed.usb && parsed.usb.latches ? parsed.usb.latches : {}) } },
-                        can: { latches: { ...defaultConfig.can.latches, ...(parsed.can && parsed.can.latches ? parsed.can.latches : {}) } },
-                        ubie: { latches: { ...defaultConfig.ubie.latches, ...(parsed.ubie && parsed.ubie.latches ? parsed.ubie.latches : {}) } }
-                    };
+                    config = { ...defaultConfig, ...parsed };
                 } catch (e) {
                     config = JSON.parse(JSON.stringify(defaultConfig));
                 }
