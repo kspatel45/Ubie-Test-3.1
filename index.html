@@ -1373,7 +1373,7 @@
         }
 
         function verifyAdmin() {
-            if (document.getElementById('admin-pass').value === "12345") {
+            if (document.getElementById('admin-pass').value === "") {
                 document.getElementById('admin-login').classList.add('hidden');
                 document.getElementById('admin-panel').classList.remove('hidden');
                 switchAdminTab('CAN');
