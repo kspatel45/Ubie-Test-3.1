@@ -445,7 +445,7 @@
             duration: 60,
             baudRate: 115200,
             lineEnding: "\\r\\n",
-            calibrationCmd: "CALIB",
+            calibrationCmd: "t00a24101",
             usb: { latches: {} },
             can: { latches: {} },
             ubie: { latches: {} }
@@ -484,10 +484,10 @@
                 openFb: `t0113736F${globalHexUpper}`,
                 closeFb: `t01137363${globalHexUpper}`,
                 testCmd: `t${ubieBoardStr}A2500${ubiePosNum}`,
-                passFb1: `t${ubieBoardStr}A46963${ubiePosNum}01`,
-                passFb2: `t${ubieBoardStr}A46963${ubiePosNum}02`,
-                passFb3: `t${ubieBoardStr}A46963${ubiePosNum}03`,
-                passFb4: `t${ubieBoardStr}A46963${ubiePosNum}04`,
+                passFb1: `t${ubieBoardStr}A469630${ubiePosNum}01`,
+                passFb2: `t${ubieBoardStr}A469630${ubiePosNum}02`,
+                passFb3: `t${ubieBoardStr}A469630${ubiePosNum}03`,
+                passFb4: `t${ubieBoardStr}A469630${ubiePosNum}04`,
                 disableCmd: `t011243${globalHexUpper}`,
                 disableOpenFb: `t01137363${globalHexUpper}`,
                 disableCloseFb: `t0113736F${globalHexUpper}`
